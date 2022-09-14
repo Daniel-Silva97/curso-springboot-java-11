@@ -1,5 +1,7 @@
 package com.springjpa.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,6 +18,11 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+
+    // O Fato de estar relacionado nas 2 entidades User e Order, é preciso colocar
+    // a annotation JsonIgnore em pelo menos uma das entidades para que a requisição GET
+    // não entre em loop infinito quando chamada.
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
