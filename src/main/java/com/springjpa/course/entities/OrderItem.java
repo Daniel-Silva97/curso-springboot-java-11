@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
+
 @Entity
 @Table(name = "tb_order_item")
 public class OrderItem implements Serializable {
@@ -65,6 +66,11 @@ public class OrderItem implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         OrderItem orderItem = (OrderItem) o;
         return id.equals(orderItem.id);
+    }
+
+
+    public Double getSubTotal() {
+        return price * quantity;
     }
 
     @Override
